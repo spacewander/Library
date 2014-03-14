@@ -1,0 +1,137 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2,h3,h4, h5, h6, pre, form, fieldset, 
+input, p, blockquote, th, td { margin:0; padding:0;}
+table { border-collapse: collapse; border-spacing: 0;}
+fieldset, img { border: 0;}
+address, caption, cite, code, dfn, em, strong, th, var
+{ font-style: normal; font-weight: normal}
+ol, ul{ margin: 1em 0; margin-left: 40px; padding-left: 0; }
+ul { list-style-type: disc;}
+ol { list-style-type: decimal;}
+caption, th { text-align: left;}
+h1, h2, h3, h4, h5, h6 { font-size: 100%;}
+
+body {
+    font-family: sans-serif;
+    background; #eee;
+}
+
+a, h1, h2 {
+    color: #377BAB;
+}
+
+h1, h2 {
+    font-family: 'Georgia', serif;
+    margin: 0;
+}
+
+h2 {
+   font-size: 1.2em; 
+}
+
+#appname {
+  float: left;
+}
+
+.calender {
+  float: left;
+  clear: left;
+  text-align: left
+  white-space: nowrap;
+}
+
+.page {
+    margin: 2em auto;
+    width: 80%;
+    padding: 0.8em;
+    background: white;
+}
+
+.introduction {
+  width: 70%
+}
+
+.entries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.entries li {
+    margin: 0.8em 1.2em;
+}
+
+.entries li h2 {
+    margin-left: -1em;
+}
+
+.add_entry {
+    /*display: none;*/
+    font-size: 0.9em;
+    border-bottom: 1px solid #ccc;
+}
+.edit_entry {
+    font-size: 0.9em;
+    border-bottom: 1px solid #ccc;
+}
+
+div.separator {
+  margin: 0 8px;
+  width: 0;
+  height: 10px;
+  line-height: 10px;
+  overflow: hidden;
+  color: #e9e9e9;
+}
+
+.add_entry .edit_entry dl {
+    font-weight: bold;
+}
+
+.title {
+    
+}
+
+.log {
+  position: absolute;
+  right: 0;
+  zoom: 1;
+  line-height: normal;
+  white-space: nowrap;
+  text-align: center;
+  top: 50%
+}
+
+.header {
+  position: relative;
+  font-size: 0.8em;
+  padding: 0.3em;
+  margin-bottom: 1em;
+  background: #fafafa;
+  border-bottom: 2px solid #eee; 
+}
+
+ul.metanav {
+  display: block;
+  list-style: none;
+  float: right;
+  text-align: right;
+}
+
+.flash {
+    background: #CEE5F5;
+    padding: 0.5em;
+    border: 1px solid #AACBE2;
+}
+
+.error {
+    background: #F0D6D6;
+    padding: 0.5em;
+}
+
+.nolist {
+  list-style: none;
+}
+
+.button {
+  
+}

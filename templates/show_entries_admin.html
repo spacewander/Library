@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+<div>
+  <label for="add_entry" >添加新的内容</label>
+  <div>
+    <span id="prev"><a href="">前一页</a></span>
+    <span id="next"><a href="">后一页</a></span>
+  </div>
+</div>
+<div>
+  <ul class="entries">
+  {% for book in books %}
+    <li>
+      <div>
+        <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''), buydate=(book.buydate if book.buydate else '')) }}">
+        <h2>{{ book.title }}</h2>
+        </a>
+        <p>
+          <span>{{ book.category |safe}}</span>
+          <span class="separator"> </span>
+          <span>{{ book.buydate |safe}}</span>
+          <span class="separator"> </span>
+        </p>
+      </div>
+      <div class="action">
+        <span class="edit">edit</span>
+        <a href="{{ url_for('delete_entry', title=book.title, category=(book.category if book.category else ''), buydate=(book.buydate if book.buydate else '')) }}">
+        <span class="delete">delete</span>
+        </a>
+      </div>
+    </li>
+  {% endfor %}
+    {% else %}
+    <li><em>目前暂无内容</em></li>
+  </ul>
+</div>
+{% endif %}
+<div class="post">
+  <form action="{{ url_for('add_entry') }}" method=post class=add_entry>
+    <dl>
+      <dt class="title">书名</dt>
+      <dd><input type=text size=30 name=title></dd>
+      <dt class="category">分类</dt>
+      <dd><input type=text size=30 name=category></dd>
+      <dt class="buydate">购买日期</dt>
+      <dd><input type=text size=30 name=buydate></dd>
+      <dt class="introduction">介绍</dt>
+      <dd><textarea name=introduction rows=20 cols=50></textarea></dd>
+      <dd><input type=submit value=发布></dd>
+    </dl>
+  </form>
+  <form action="{{ url_for('edit_entry') }}" method=post class=edit_entry>
+    <dl>
+      <dt class="title">书名</dt>
+      <dd><input type=text size=30 name=title></dd>
+      <dt class="category">分类</dt>
+      <dd><input type=text size=30 name=category></dd>
+      <dt class="buydate">购买日期</dt>
+      <dd><input type=text size=30 name=buydate></dd>
+      <dt class="introduction">介绍</dt>
+      <dd><textarea name=introduction rows=20 cols=50></textarea></dd>
+      <dd><input type=submit value=更新></dd>
+    </dl>
+  </form>
+</div>
+{% endblock %}
+

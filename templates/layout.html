@@ -1,0 +1,46 @@
+<!Doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Welcome to the Library.">
+  <title>Library</title>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css')}}">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='lib/pure/pure-min.css')}}">
+  <!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">-->
+  <!--[if lte IE 8]>
+    <script>
+    alert("哎呀，你用的浏览器太老土了，现在这种浏览器快要淘汰了，还是换个新的吧！")
+    </script>
+  <![endif]-->
+</head>
+<body>
+<div class="header pure-g-r">
+  <h1 id="appname" class="pure-u-1-5">Library</h1>
+  <div class="log pure-button">
+    {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">登录</a>
+    {% else %}
+    <a href="{{ url_for('logout') }}">登出</a>
+    {% endif %}
+  </div>
+</div>
+{% for message in get_flashed_messages() %}
+  <div class="flash">{{ message }}</div>
+  {% endfor %}
+  <div class="container">
+    <div class="page">
+    {% block body %}{% endblock %}
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <span class="calender">{{ today }}</span>
+  <span class="version">Write in flask. Version : 0.1</span>
+</div>
+<div class="js">
+  <script async src="" ></script>
+</div>
+</body>
+</html>

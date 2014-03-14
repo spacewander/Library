@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>登录</h2>
+{% if error %}
+<p class="error">
+  <strong>Error:</strong>
+  {{ error }}
+  {% endif %}
+</p>
+<form action="{{ url_for('login') }}" method=post>
+    {{ form.hidden_tag() }}
+  <dl>
+    <dt>用户名：</dt>
+    <dd><input type=text name=username></dd>
+    <dt>密码：</dt>
+    <dd><input type=password name=password></dd>
+    <dd><input type=submit value=Login></dd>
+  </dl>
+</form>
+{% endblock %}

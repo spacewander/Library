@@ -1,0 +1,21 @@
+{
+  "name": "library",
+  "version": "0.0.0",
+  "authors": [
+    "spacewander <spacewanderlzx@gmail.com>"
+  ],
+  "description": "A tiny private library system. Write for fun and practice",
+  "license": "MIT",
+  "homepage": "localhost",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pure": "~0.4.2"
+  }
+}

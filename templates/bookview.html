@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+<div>
+  <h2>{{ title }}</h2>
+  <ul class=nolist>
+    <li>分类</li>
+    <li>{{ category }}</li>
+    <li>购置日期</li>
+    <li>{{ buydate }}</li>
+  </ul>
+</div>
+<div>
+  <h4 class=bv_introduction>介绍</h4>
+  <div>{{ introduction }}</div>
+</div>
+{% endblock %}
+
