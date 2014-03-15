@@ -1,34 +1,42 @@
 {% extends "layout.html" %}
+{% block sidebar %}
+{% endblock %}
+
 {% block body %}
 {% if session.logged_in %}
-<div>
+<div class='right-center'>
   <label for="add_entry" >添加新的内容</label>
   <div>
-    <span id="prev"><a href="">前一页</a></span>
-    <span id="next"><a href="">后一页</a></span>
+    <span id="prev"><a href="" class="no-link">前一页</a></span>
+    <span id="next"><a href="" class="no-link">后一页</a></span>
   </div>
 </div>
-<div>
-  <ul class=entries>
+{% endif %}
+<div class='right-center'>
+  {% if books %}
+  <ul class="entries nolist">
   {% for book in books %}
     <li>
-      <div>
-        <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''), buydate=(book.buydate if book.buydate else '')) }}">
+      <div class="book-item">
+        <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''), buydate=(book.buydate if book.buydate else '')) }}" 
+          target="_blank">
         <h2>{{ book.title }}</h2>
         </a>
-        <p>
-          <span>{{ book.category |safe}}</span>
-          <span class=separator> </span>
-          <span>{{ book.buydate |safe}}</span>
-          <span class=separator> </span>
-        </p>
+        <div class="book-detail">
+          <span class="separator"> </span>
+          <span class="book-category">分类：&nbsp;{{ book.category |safe}}</span>
+          <span class="separator"> </span>
+          <span class="book-buydate">购置日期：&nbsp;{{ book.buydate |safe}}</span>
+        </div>
       </div>
     </li>
   {% endfor %}
-    {% else %}
-    <li><em>目前暂无内容</em></li>
-  {% endif %}
   </ul>
+  {% else %}
+  <div>
+    <em>目前暂无内容</em>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
 

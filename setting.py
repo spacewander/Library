@@ -7,7 +7,7 @@ from logging import FileHandler, Formatter
 from flask import Flask
 
 # configuration
-DATABASE = '/tmp/library.db'
+DATABASE = '/home/lzx/library.db'
 DEBUG = True
 
 SECRET_KEY = 'development_key' # don`t think it seriously
@@ -19,7 +19,7 @@ SEND_FILE_MAX_AGE_DEFAULT = 86400
 # json should be encoded with utf-8
 JSON_AS_ASCII = False
 
-# mail to me if something wrong when the programme is not working in DEBUG MODE
+# mail to me if something wrong when the programme is not working in WORK MODE
 ADMINEMAIL = ['spacewanderlzx@gmail.com']
 
 # administrators` username and their password

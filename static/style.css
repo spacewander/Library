@@ -8,42 +8,55 @@ ol, ul{ margin: 1em 0; margin-left: 40px; padding-left: 0; }
 ul { list-style-type: disc;}
 ol { list-style-type: decimal;}
 caption, th { text-align: left;}
+dd { margin: 0px;}
 h1, h2, h3, h4, h5, h6 { font-size: 100%;}
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
 
 body {
-    font-family: sans-serif;
-    background; #eee;
+  font-family: sans-serif;
+  width: 100%;
+  min-height: 100%;    
 }
 
 a, h1, h2 {
-    color: #377BAB;
+  color: #377BAB;
 }
 
 h1, h2 {
-    font-family: 'Georgia', serif;
-    margin: 0;
+  font-family: 'Georgia', serif;
+  margin: 0;
 }
 
 h2 {
-   font-size: 1.2em; 
+  font-size: 1.2em; 
 }
 
 #appname {
-  float: left;
+  float: left; 
+  margin-bottom: 3px;
+  bottom: 0%;
 }
 
 .calender {
   float: left;
-  clear: left;
   text-align: left
   white-space: nowrap;
 }
 
-.page {
-    margin: 2em auto;
-    width: 80%;
-    padding: 0.8em;
-    background: white;
+#sidebar {
+  margin: 0px;
+  width: 20%;
+  background: white;
+}
+
+#page {
+  margin-left: auto;
+  width: 80%;
+  background: white;
 }
 
 .introduction {
@@ -51,63 +64,73 @@ h2 {
 }
 
 .entries {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .entries li {
-    margin: 0.8em 1.2em;
+  margin: 0.8em 1.2em;
 }
 
 .entries li h2 {
-    margin-left: -1em;
+  margin-left: -1em;
 }
 
 .add_entry {
-    /*display: none;*/
-    font-size: 0.9em;
-    border-bottom: 1px solid #ccc;
+  font-size: 0.9em;
+  border-bottom: 1px solid #ccc;
 }
 .edit_entry {
-    font-size: 0.9em;
-    border-bottom: 1px solid #ccc;
+  font-size: 0.9em;
+  border-bottom: 1px solid #ccc;
+  display: none;
 }
 
 div.separator {
   margin: 0 8px;
   width: 0;
-  height: 10px;
+  max-height: 10px;
   line-height: 10px;
   overflow: hidden;
   color: #e9e9e9;
 }
 
 .add_entry .edit_entry dl {
-    font-weight: bold;
-}
-
-.title {
-    
+  font-weight: bold;
 }
 
 .log {
   position: absolute;
-  right: 0;
+  top: 25%;
+  right: 20px;
   zoom: 1;
   line-height: normal;
   white-space: nowrap;
   text-align: center;
-  top: 50%
+}
+.log :link {
+  text-decoration: none;
+}
+.log-button {
+  text-decoration: none;
+  background-color: #e6e6e6;
+  margin-top: 15px;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  font-size: 100%;
+  width: auto;
+  height: auto;
 }
 
 .header {
   position: relative;
-  font-size: 0.8em;
+  font-size: x-small;
   padding: 0.3em;
-  margin-bottom: 1em;
   background: #fafafa;
   border-bottom: 2px solid #eee; 
+  padding-bottom: 0px;
+  margin-top: -30px;
 }
 
 ul.metanav {
@@ -118,6 +141,7 @@ ul.metanav {
 }
 
 .flash {
+    text-align: center;
     background: #CEE5F5;
     padding: 0.5em;
     border: 1px solid #AACBE2;
@@ -132,6 +156,117 @@ ul.metanav {
   list-style: none;
 }
 
-.button {
-  
+@media screen and (min-height: 320px) {
+.container {
+  min-height: 160px;
+  }
 }
+@media screen and (min-height: 480px) {
+.container {
+  min-height: 320px;
+  }
+}
+@media screen and (min-height: 650px) {
+.container {
+  min-height: 500px;
+  }
+}
+
+.footer {
+  float: none;  
+  border-top: 2px solid #eee; 
+  max-height: 84px;
+  background-color: #fafafa;
+}
+
+.text-center {
+  text-align: center;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.no-link {
+  text-decoration: none;
+}
+
+.js {
+  display: none;
+}
+
+.center {
+
+}
+
+.right-center {
+
+}
+
+#login {
+  width: 40%;
+  margin-left: 20%;
+  margin-right: 0;
+  display: inline-block;
+}
+
+@media screen and (min-width:  684px) {
+  #login-border {
+    border: 2px dashed #377BAB;
+    margin-right: 40%;
+    margin-left: 15%;
+    margin-top: 5%;
+  }
+}
+
+#login-prompt {
+  margin-bottom: -30px; 
+}
+
+#log-box {
+  width: 400px;
+  box-sizing: border-box;
+  text-shadow: none;
+  border: 1px solid #FBFBFB;
+  border-radius: 3px;
+}
+
+dd.left-align {
+  margin-left: 0px;
+}
+
+#log-username #password {
+  font-weight: bold;
+}
+
+input[name="username"], input[name="password"] {
+  margin-top: 0.5em
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75) inset;
+  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75) inset;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75) inset;
+  vertical-align: middle;
+}
+
+input[type="submit"] {
+}
+
+.submit-btn {
+  text-align: center;
+  color: #028BCB;
+  border-radius: 1px;
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+
+.book-item {}
+.book-detail {
+  display: inline;
+}
+

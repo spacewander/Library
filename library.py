@@ -7,7 +7,7 @@ from flask.ext.wtf import Form
 from datetime import datetime, timedelta
 
 # here is from our app
-from db import connect_db, set_users_with_dict#, show_db
+from db import connect_db, set_users_with_dict
 #from db import init_db
 from setting import app, PASSWORD, ADMINPASSWORD, \
         set_bugs_logger, set_warning_logger
@@ -107,6 +107,7 @@ def edit_entry():
         return redirect(url_for('show_entries'))
 
     get_db()
+    # if the entry is not existed in the database, nothing will change. This is not matter.
     g.db.execute('update entries set category = ?, buydate = ?, \
                             introduction = ? where title = ?', \
              [category, buydate, request.form['introduction'], title])
@@ -233,6 +234,4 @@ if __name__ == '__main__' :
     set_bugs_logger()
     set_warning_logger()
     app.run()
-    #show_db(g.db, 'users')
-    #show_db(g.db, 'entries')
 

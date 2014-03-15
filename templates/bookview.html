@@ -2,15 +2,21 @@
 {% block body %}
 <div>
   <h2>{{ title }}</h2>
-  <ul class=nolist>
-    <li>分类</li>
-    <li>{{ category }}</li>
-    <li>购置日期</li>
-    <li>{{ buydate }}</li>
-  </ul>
+  <table>
+    <tr>
+      <th>分类</th>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td class="text-right">{{ category }}</td>
+    </tr>
+    <tr>
+      <th>购置日期</th>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td class="text-right">{{ buydate }}</td>
+    </tr>
+  </table>
 </div>
 <div>
-  <h4 class=bv_introduction>介绍</h4>
+  <h4 class="bv_introduction">介绍</h4>
   <div>{{ introduction }}</div>
 </div>
 {% endblock %}

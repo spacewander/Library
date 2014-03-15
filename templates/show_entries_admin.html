@@ -1,27 +1,29 @@
 {% extends "layout.html" %}
+{% block sidebar %}
+{% endblock %}
+
 {% block body %}
 {% if session.logged_in %}
-<div>
+<div class='center'>
   <label for="add_entry" >添加新的内容</label>
-  <div>
-    <span id="prev"><a href="">前一页</a></span>
-    <span id="next"><a href="">后一页</a></span>
-  </div>
 </div>
-<div>
-  <ul class="entries">
+{% endif %}
+<div class='center'>
+  {% if books %}
+  <ul class="entries nolist">
   {% for book in books %}
     <li>
-      <div>
-        <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''), buydate=(book.buydate if book.buydate else '')) }}">
+      <div class="book-item">
+        <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''), buydate=(book.buydate if book.buydate else '')) }}" 
+          target="_blank">
         <h2>{{ book.title }}</h2>
         </a>
-        <p>
-          <span>{{ book.category |safe}}</span>
+        <div class="book-detail">
+          <span>购置日期：&nbsp;{{ book.category |safe}}</span>
           <span class="separator"> </span>
-          <span>{{ book.buydate |safe}}</span>
+          <span>分类：&nbsp;{{ book.buydate |safe}}</span>
           <span class="separator"> </span>
-        </p>
+        </div>
       </div>
       <div class="action">
         <span class="edit">edit</span>
@@ -31,12 +33,14 @@
       </div>
     </li>
   {% endfor %}
-    {% else %}
-    <li><em>目前暂无内容</em></li>
   </ul>
+  {% else %}
+  <div>
+    <em>目前暂无内容</em>
+  </div>
 </div>
 {% endif %}
-<div class="post">
+<div class="post center">
   <form action="{{ url_for('add_entry') }}" method=post class=add_entry>
     <dl>
       <dt class="title">书名</dt>
@@ -44,7 +48,7 @@
       <dt class="category">分类</dt>
       <dd><input type=text size=30 name=category></dd>
       <dt class="buydate">购买日期</dt>
-      <dd><input type=text size=30 name=buydate></dd>
+      <dd><input type=text size=30 name=buydate placeholder="yyyy-mm-dd"></dd>
       <dt class="introduction">介绍</dt>
       <dd><textarea name=introduction rows=20 cols=50></textarea></dd>
       <dd><input type=submit value=发布></dd>
@@ -57,12 +61,16 @@
       <dt class="category">分类</dt>
       <dd><input type=text size=30 name=category></dd>
       <dt class="buydate">购买日期</dt>
-      <dd><input type=text size=30 name=buydate></dd>
+      <dd><input type=text size=30 name=buydate placeholder="yyyy-mm-dd"></dd>
       <dt class="introduction">介绍</dt>
       <dd><textarea name=introduction rows=20 cols=50></textarea></dd>
       <dd><input type=submit value=更新></dd>
     </dl>
   </form>
+</div>
+<div>
+  <span id="prev"><a href="" class="no-link">前一页</a></span>
+  <span id="next"><a href="" class="no-link">后一页</a></span>
 </div>
 {% endblock %}
 
