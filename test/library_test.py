@@ -3,9 +3,7 @@
 import os
 import unittest
 import tempfile
-# for import the module in parent dir
-import sys
-sys.path.append("..")
+
 import library
 
 class LibaryTestCase(unittest.TestCase):

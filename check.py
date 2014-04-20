@@ -1,7 +1,10 @@
 # coding: utf-8
 
-from flask import flash
+from flask import flash, session
 import re
+import hashlib
+
+from library import app
 
 def check_title_is_existed(title):
     """should not be empty"""
@@ -36,3 +39,21 @@ def check_items_in_form(title, category, buydate):
     return (check_title_is_existed(title) and \
             check_category_is_valid(category) and \
             check_buydate_is_vaild(buydate))
+
+def check_admin_logged():
+    """check if the administrator is logged or not"""
+    if not session.get('logged_in') or not session.get('admin_logged_in'):
+        return False
+    else:
+        return True
+
+def encrypt_password(password):
+    """encrypt the password"""
+    m = hashlib.md5()
+    m.update(password)
+
+    if app.config.salt is not None :
+        m.update(app.config.salt)
+
+    return m.digest()
+
