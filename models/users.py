@@ -14,12 +14,12 @@ class User(db.Model):
     def __init__(self, username, password):
         self.username = username
         self._user_id = self.generalize_user_id(id, username)
-        self.password = encrypt_password(password)
+        self.password = unicode(encrypt_password(password), errors = 'replace')
 
     def __repr__(self):
         return '<User %s , user_id %s >' % ( self.username, self.user_id)
 
-    __str__ = __repr__
+    __unicode__ = __str__ = __repr__
 
     @property
     def user_id(self):
@@ -29,3 +29,4 @@ class User(db.Model):
     def generalize_user_id(self, id, username):
         """ generalize user id woth id and username """
         return (base64.b64encode(str(id) + username))[:8] # not too long
+

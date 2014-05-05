@@ -1,8 +1,9 @@
 # coding: utf-8
-
-from flask import flash, session
 import re
 import hashlib
+import base64
+
+from flask import flash, session
 
 from library import app
 
@@ -29,7 +30,7 @@ def check_category_is_valid(category):
 
 def check_buydate_is_vaild(buydate):
     """ should be yyyy-mm-dd"""
-    if len(buydate) != 0 and not re.match('\d\d\d\d-\d\d-\d\d', buydate) :
+    if len(buydate) != 0 and not re.match('\d\d\d\d-\d*\d-\d*\d', buydate) :
         flash(u'购买日期格式错误，应该为yyyy-mm-dd')
         return False
     return True
@@ -56,4 +57,13 @@ def encrypt_password(password):
         m.update(app.config.salt)
 
     return m.digest()
+
+def encrypt_book_record(book):
+    """ encrypt the info of each book """
+    book.ssid = base64.b16encode(str(book.id))
+    return book
+
+def decrypt_book_record(book_ssid):
+    """ decrypt the info of each book """
+    return base64.b16decode(str(book_ssid))
 

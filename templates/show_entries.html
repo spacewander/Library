@@ -1,17 +1,5 @@
-{% extends "layout.html" %}
-{% block sidebar %}
-{% endblock %}
-
-{% block body %}
-{% if session.logged_in %}
-<div class='right-center'>
-  <label for="add_entry" >添加新的内容</label>
-  <div>
-    <span id="prev"><a href="" class="no-link">前一页</a></span>
-    <span id="next"><a href="" class="no-link">后一页</a></span>
-  </div>
-</div>
-{% endif %}
+{% extends "user.html" %}
+{% block main %}
 <div class='right-center'>
   {% if books %}
   <ul class="entries nolist">
@@ -27,6 +15,7 @@
           <span class="book-category">分类：&nbsp;{{ book.category |safe}}</span>
           <span class="separator"> </span>
           <span class="book-buydate">购置日期：&nbsp;{{ book.buydate |safe}}</span>
+          <span class="separator"> </span>
         </div>
       </div>
     </li>
@@ -37,6 +26,10 @@
     <em>目前暂无内容</em>
   </div>
   {% endif %}
+</div>
+<div>
+    <span id="prev"><a href="" class="no-link">前一页</a></span>
+    <span id="next"><a href="" class="no-link">后一页</a></span>
 </div>
 {% endblock %}
 

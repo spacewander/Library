@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if session.admin_logged_in %}
+    <div class="sidebar">
+      {{ user.username }}
+    </div>
+    {% endif %}
+    {% block main %}
+
+    {% endblock %}
+{% endblock %}
+

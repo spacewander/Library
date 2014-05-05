@@ -18,12 +18,14 @@ class Entries(db.Model):
 
     def __repr__(self):
         if self.id is None :
-            return  'Book: %s Category: %s Buydate: %s' % \
-                (self.title, self.category, self.buydate_formula)
-        return 'ID: %i Book: %s Category: %s Buydate: %s' % \
-                (self.id, self.title, self.category, self.buydate_formula)
+            return  u'Book: %s Category: %s Buydate: %s' % \
+                (self.title, self.category, self.buydate_formula() )
 
-    __str__ = __repr__
+        return u'ID: %i Book: %s Category: %s Buydate: %s' % \
+                (self.id, self.title, self.category, self.buydate_formula() )
+
+    __unicode__ = __str__ = __repr__
 
     def buydate_formula(self):
-        return self.buydate
+        return self.buydate.encode('utf-8')
+
