@@ -14,6 +14,8 @@
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}">
   <!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">-->
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='lib/pure-min.css')}}">
+  {% block subcss %}
+  {% endblock %}
   <!--[if lte IE 8]>
     <script>
     alert("the browser you using is too old, please let it be retired")
@@ -47,8 +49,15 @@
   <span class="version text-center">Written in flask. Version : 0.1</span>
 </div>
 <div id="js">
-  <!--<script async src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+  <!--<script defer src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
   <script defer src="{{ url_for('static', filename='lib/jquery-1.11.0.min.js') }}" ></script>
+  {% if exist_static_file('global-min.js') %}
+  <script defer src="{{ url_for('static', filename='global-min.js') }}"></script>
+  {% else %}
+  <script defer src="{{ url_for('static', filename='global.js') }}"></script>
+  {% endif %}
+  {% block subjs %}
+  {% endblock %}
 </div>
 </body>
 </html>

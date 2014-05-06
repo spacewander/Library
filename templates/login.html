@@ -1,4 +1,12 @@
 {% extends "layout.html" %}
+{% block subcss %}
+{% if exist_static_file('form-min.css') %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='form-min.css')}}">
+{% else %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='form.css') }}" >
+{% endif %}
+{% endblock %}
+
 {% block body %}
 {% if error %}
 <p class="error">
@@ -30,3 +38,12 @@
     </div>
 </div>
 {% endblock %}
+
+{% block subjs %}
+{% if exist_static_file('form-min.js') %}
+<script defer src="{{url_for('static', filename='form-min.js') }}"></script>
+{% else %}
+<script defer src="{{ url_for('static', filename='form.js') }}"></script>
+{% endif %}
+{% endblock %}
+
