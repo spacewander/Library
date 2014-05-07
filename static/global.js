@@ -43,29 +43,10 @@ function get(key) {
     }
 }
 
-// 简单json处理
-function obj2json(o) {
-    if (!o) {
-        return "";
-    }
-    return JSON.stringify(o);
-}
-function json2obj(s) {
-    try {
-        if (s) {
-            return JSON.parse(s);
-        } 
-        else {
-            return {};
-        }
-    }
-    catch (e) {
-        return {};
-    }
-}
-
+// the web address of the app
 var baseURL = window.location.href.replace(/(\?|#).*$/,"").replace(/((http:|https|)\/.*\/)(.*$)/, "$1");
 
+// get the route part of URL
 function getURLComponent() {
     return window.location.href.replace(/(\?|#).*$/, "").replace(/^.*\//, "");
 }
@@ -77,5 +58,4 @@ var Global = {
     adminEntries : baseURL + 'admin',
     login : baseURL + 'login'
 };
-
 
