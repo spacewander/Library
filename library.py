@@ -85,8 +85,14 @@ def init_db(app, db):
     if app.config["DEBUG"] :
         db.create_all()
 
+# some functions used in Jinja2 templates
 @app.context_processor
 def exist_static_file_wrapper():
+    """
+    check whether the min-version of static file existed.
+    If existed, check if this file is newer than the non-min one.
+    If it is newer, return true so that the Jinja2 template will load it.
+    """
     global basedir
     def exist_static_file(filename):
         static_file_dir = os.path.join(basedir, 'static')
@@ -99,5 +105,6 @@ def exist_static_file_wrapper():
                 os.path.exists(static_file) and \
                 os.path.getatime(static_file) > \
                 os.path.getatime(static_max_file)
+    # register the exist_static_file object in Jinja2 templates
     return dict(exist_static_file=exist_static_file)
 

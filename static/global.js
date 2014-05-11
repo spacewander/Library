@@ -56,6 +56,6 @@ var Global = {
     homepage : baseURL,
     showEntries : baseURL + 'entries',
     adminEntries : baseURL + 'admin',
-    login : baseURL + 'login'
+    login : baseURL + 'login',
 };
 

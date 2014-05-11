@@ -8,7 +8,7 @@ ol, ul{ margin: 1em 0; margin-left: 40px; padding-left: 0; }
 ul { list-style-type: disc;}
 ol { list-style-type: decimal;}
 caption, th { text-align: left;}
-dd { margin: 0px;}
+dd { margin: 0;}
 h1, h2, h3, h4, h5, h6 { font-size: 100%;}
 * {
   -webkit-box-sizing: border-box;
@@ -78,6 +78,7 @@ h2 {
 }
 
 .add_entry {
+  display: none;
   font-size: 0.9em;
   border-bottom: 1px solid #ccc;
 }
@@ -129,11 +130,11 @@ div.separator {
   padding: 0.3em;
   background: #fafafa;
   border-bottom: 2px solid #eee; 
-  padding-bottom: 0px;
+  padding-bottom: 0;
   margin-top: -30px;
 }
 
-ul.metanav {
+.metanav {
   display: block;
   list-style: none;
   float: right;
@@ -211,7 +212,7 @@ a.no-link .no-link {
 
 #login {
   width: 40%;
-  margin-left: 20%;
+  margin-left: 7%;
   margin-right: 0;
   display: inline-block;
 }
@@ -249,9 +250,9 @@ input[name="username"], input[name="password"] {
   margin-top: 0.5em
   border: 1px solid rgb(204, 204, 204);
   border-radius: 3px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75) inset;
   -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75) inset;
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75) inset;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75) inset;
   vertical-align: middle;
 }
 
@@ -269,5 +270,18 @@ input[type="submit"] {
 .book-item {}
 .book-detail {
   display: inline;
+}
+
+.none-style {
+  display: none;
+}
+
+.action-button {
+  text-decoration: none;
+  background-color: #e6e6e6;
+  border-radius: 4px;
+  font-size: 100%;
+  width: auto;
+  height: auto;
 }
 
