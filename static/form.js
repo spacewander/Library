@@ -22,10 +22,10 @@ Form.showSubmit = function(form) {
 };
 
 // show error message
-// 
-// @param [String] elem 
+//
+// @param [String] elem
 //      the input which should show the error
-// @param [String] error 
+// @param [String] error
 //      the error message
 Form.showError = function(elem, error) {
     if (!error || !elem) {
@@ -36,8 +36,8 @@ Form.showError = function(elem, error) {
 };
 
 // hide error message
-// 
-// @param [String] elem 
+//
+// @param [String] elem
 //      the input which should show the error
 Form.hideError = function( elem ) {
     if (!elem) {
@@ -56,7 +56,7 @@ Form.addError = function () {
     });
 };
 
-// this code is copied from the docs of jQuery 
+// this code is copied from the docs of jQuery
 // to make the effect of val() on textarea normal
 $.valHooks.textarea = {
   get: function( elem ) {
@@ -79,7 +79,7 @@ Form.rememberEntry = function() {
 Form.recallEntry = function() {
     form_input_names = [ 'title', 'category', 'buydate'];
     for (var name in form_input_names) {
-        if ($('form.add_entry > input[name=' + name + ']').val()) {
+        if ($('form.add_entry input[name=' + name + ']').val()) {
             continue;
         }
         var value = get(name);
@@ -88,7 +88,7 @@ Form.recallEntry = function() {
             store(name, '');
         }
     }
-    if (!$('form.add_entry > textarea[name=introduction]').val()) {
+    if (!$('form.add_entry textarea[name=introduction]').val()) {
         var textarea_value = get('introduction');
         if (textarea_value) {
             $('textarea[name=introduction]').val(textarea_value);
@@ -192,7 +192,7 @@ Form.checkUsername = function() {
     $('form#login input[name=username]').blur( function() {
         // if the input is empty and the password is not empty.
         // This will happen when a user delete his/her username by mistake.
-        if ($(this).val().match(/^\s*$/) && 
+        if ($(this).val().match(/^\s*$/) &&
             $(this).parents('form#login')
                    .find('input[name=password]').val() !== '') {
             // we can not use animate with background-color with basuc jQuery
@@ -251,7 +251,7 @@ Form.checkLogin = function() {
                 shouldHideSubmit = true;
             }
         });
-        
+
         if (shouldHideSubmit) {
             $('form#login input[type=text]').each( function() {
                 (function (that, bgcolor) {
@@ -283,7 +283,7 @@ $(document).ready( function() {
         return;
     }
     // if the current page is home page
-    if ( window.location.href === Global.adminEntries || 
+    if ( window.location.href === Global.adminEntries ||
         window.location.href === Global.homepage ||
         window.location.href === Global.showEntries) {
 

@@ -21,7 +21,7 @@ def check_category_is_valid(category):
     * whitespace
     * special char like ! @ $ % ^ & * ( ) + -
     """
-    if len(category) != 0 and re.match('[\d\s!@#$%^&*()+-]', category) :
+    if len(category) != 0 and re.match('[\d!@#$%^&*()+-]', category) :
         # if category is not empty
         # match whitespace or digit or some special char
         flash(u'分类输入格式有误，不能包含特殊字符！')

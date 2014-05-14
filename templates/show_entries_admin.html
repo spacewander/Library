@@ -14,8 +14,8 @@
   {% for book in books %}
     <li>
       <div class="book-item">
-        <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''), 
-            buydate=(book.buydate if book.buydate else '')) }}" 
+        <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''),
+            buydate=(book.buydate if book.buydate else '')) }}"
           target="_blank">
         <h2>{{ book.title }}</h2>
         </a>
@@ -28,10 +28,17 @@
         </div>
       </div>
       <div class="action">
-        <span class="edit">edit</span>
-        <a href="{{ url_for('delete_entry', title=book.title, category=(book.category if book.category else ''), 
+        <span class="edit action-button" data-id={{ book.id }}>edit</span>
+        <div class="none-style">
+          <div data-type="title">{{ book.title }}</div>
+          <div data-type="category">{{ book.category |safe }}</div>
+          <div data-type="buydate">{{ book.buydate |safe }}</div>
+          <div data-type="introduction">{{ book.introduction |safe}}</div>
+        </div>
+        <a class="no-link" href="{{ url_for('delete_entry', title=book.title, 
+            category=(book.category if book.category else ''),
             buydate=(book.buydate if book.buydate else ''), ssid=book.ssid) }}">
-        <span class="delete no-link">delete</span>
+        <span class="delete no-link action-button">delete</span>
         </a>
       </div>
     </li>
