@@ -134,7 +134,7 @@ def edit_entry():
 
     edited_entry = Entries.query.filter_by(
             id=ssid, title=title, category=category, \
-            buydate=buydate).first()
+                    buydate=buydate).first()
 
     if edited_entry is not None :
         edited_entry.introduction = request.form['introduction']
@@ -165,7 +165,7 @@ def delete_entry():
 
     pre_delete_entry = Entries.query.filter_by(
             id=ssid, title=title, category=category, \
-            buydate=buydate).first()
+                    buydate=buydate).first()
 
     if pre_delete_entry is not None :
         try :
@@ -194,7 +194,11 @@ def login():
     """
     error = None
     form = Form()
+    #if not form.validate_on_submit() :
+        #error = u'不合法的请求'
+        #return render_template('login.html', error=error, form=form)
 
+    # only support POST
     if request.method == 'POST' :
         username = request.form['username']
         password = request.form['password']
@@ -218,7 +222,7 @@ def login():
         elif request.form['password'] != (app.config['ADMINPASSWORD'])[username] :
             error = 'Invalid password'
         else :
-            # log as administrator
+        # log as administrator
             session['logged_in'] = True
             session['admin_logged_in'] = True
             set_session_live(is_admin=True)
@@ -249,7 +253,6 @@ def get_book_view(title):
             buydate=buydate).first()
     if selected_entry is None :
         flash(u'无法找到对应的项')
-        return redirect(url_for('show_entries'))
     else :
         introduction = selected_entry.introduction
 
@@ -258,5 +261,4 @@ def get_book_view(title):
 
     return render_template('bookview.html', title=title, \
             category=category, buydate=buydate, introduction=introduction)
-
 

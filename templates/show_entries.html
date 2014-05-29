@@ -1,21 +1,23 @@
 {% extends "user.html" %}
 {% block main %}
-<div class='right-center'>
+<div class='right-center pure-u-3-5'>
   {% if books %}
   <ul class="entries nolist">
   {% for book in books %}
     <li>
-      <div class="book-item">
-        <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''), buydate=(book.buydate if book.buydate else '')) }}" 
-          target="_blank">
-        <h2>{{ book.title }}</h2>
-        </a>
-        <div class="book-detail">
-          <span class="separator"> </span>
-          <span class="book-category">分类：&nbsp;{{ book.category |safe}}</span>
-          <span class="separator"> </span>
-          <span class="book-buydate">购置日期：&nbsp;{{ book.buydate |safe}}</span>
-          <span class="separator"> </span>
+      <div>
+        <div class="book-item inline">
+          <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''), buydate=(book.buydate if book.buydate else '')) }}"
+            target="_blank" class="no-link">
+          <h3 class="book-title inline">{{ book.title }}</h3>
+          </a>
+          <div class="book-detail inline">
+            <span class="separator"> </span>
+            <span class="book-category">分类：&nbsp;{{ book.category |safe}}</span>
+            <span class="separator"> </span>
+            <span class="book-buydate">购置日期：&nbsp;{{ book.buydate |safe}}</span>
+            <span class="separator"> </span>
+          </div>
         </div>
       </div>
     </li>

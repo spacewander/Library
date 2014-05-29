@@ -37,22 +37,19 @@ h2 {
   font-size: 1.2em;
 }
 
+/* the name of our app */
 #appname {
   float: left;
   margin-bottom: 3px;
-  bottom: 0%;
+  bottom: 0;
+  letter-spacing: 1px;
 }
 
+/*the calender is in the foot of each page*/
 .calender {
   float: left;
   text-align: left;
   white-space: nowrap;
-}
-
-#sidebar {
-  margin: 0px;
-  width: 20%;
-  background: white;
 }
 
 #page {
@@ -79,17 +76,27 @@ h2 {
   margin-left: -1em;
 }
 
+/*this is the form for add new entry to db*/
 .add_entry {
   display: none;
   font-size: 0.9em;
   border-bottom: 1px solid #ccc;
 }
+
+label[for=add_entry] {
+  background-color: yellow;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+/*this is the form for edit an entry of db*/
 .edit_entry {
   font-size: 0.9em;
   border-bottom: 1px solid #ccc;
   display: none;
 }
 
+/* separate each part of the detail of book */
 .separator {
   margin: 0 8px;
   width: 0;
@@ -151,7 +158,10 @@ h2 {
 }
 
 .error {
+  letter-spacing: 1px;
+  margin-left: -10px;
   text-align: center;
+  width: 400px;
   background: #F0D6D6;
   padding: 0.5em;
 }
@@ -160,19 +170,23 @@ h2 {
   list-style: none;
 }
 
-@media screen and (min-height: 320px) {
+/*keep the container fit to the screen*/
+@media screen and (min-height: 650px) {
 .container {
-  min-height: 160px;
+  padding-top: 20px;
+  min-height: 500px;
   }
 }
 @media screen and (min-height: 480px) {
 .container {
+  padding-top: 20px;
   min-height: 320px;
   }
 }
-@media screen and (min-height: 650px) {
+@media screen and (min-height: 320px) {
 .container {
-  min-height: 500px;
+  padding-top: 20px;
+  min-height: 160px;
   }
 }
 
@@ -196,9 +210,9 @@ h2 {
   text-align: right;
 }
 
+/*don't display the underline*/
 a.no-link, .no-link {
   text-decoration: none;
-  color: #000000;
 }
 
 .js {
@@ -209,15 +223,13 @@ a.no-link, .no-link {
   margin-left: 20px;
 }
 
-/*.right-center {*/
-
-/*}*/
-
+/*this area is about the login page*/
 #login {
   width: 40%;
   margin-left: 7%;
   margin-right: 0;
   display: inline-block;
+  letter-spacing: 0;
 }
 
 @media screen and (min-width:  684px) {
@@ -250,6 +262,11 @@ a.no-link, .no-link {
   font-weight: bold;
 }
 
+input[type=submit], input[type=button], input[type=reset] {
+  margin-top: 5px;
+}
+
+/*the inputs of login page*/
 input[name="username"], input[name="password"] {
   margin-top: 0.5em;
   border: 1px solid rgb(204, 204, 204);
@@ -260,9 +277,7 @@ input[name="username"], input[name="password"] {
   vertical-align: middle;
 }
 
-/*input[type="submit"] {*/
-/*}*/
-
+/*a fake submit button*/
 .submit-btn {
   text-align: center;
   color: #028BCB;
@@ -271,21 +286,70 @@ input[name="username"], input[name="password"] {
   cursor: pointer;
 }
 
-/*.book-item {}*/
-.book-detail {
+/* should be display: inline */
+.inline {
   display: inline;
 }
 
+/* let the elements look click-able */
+.clickable {
+  cursor: pointer;
+}
+
+/*book is the prefix for display each entry*/
+.book-title {
+  text-align: -webkit-center;
+  text-align: -moz-center;
+  text-align: -ms-center;
+  text-align: -o-center;
+  text-align: center;
+}
+
+/*.book-item {*/
+/*}*/
+/* FIXME */
+.book-detail:focus {
+  visibility: visible;
+}
+
+.book-detail {
+  display: inline;
+  visibility: hidden;
+}
+
+/*hide any elements*/
 .none-style {
   display: none;
 }
 
+/*keep action part fixed*/
+.action {
+  position: absolute;
+  right: 20%;
+  margin-top: 4px;
+}
+
+/* the style of the action trigger in admin page. Make it look like a button */
 .action-button {
   text-decoration: none;
   background-color: #e6e6e6;
   border-radius: 4px;
   font-size: 100%;
-  width: auto;
+  width: 80px;
   height: auto;
+  font-weight: bold;
+  margin: 4px;
+  color: white;
+  text-align: center;
+  display: inline-block;
+}
+
+/*different action button type*/
+.edit {
+  background-color: #377BAB;
+}
+
+.delete {
+  background-color: red;
 }
 

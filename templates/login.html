@@ -8,34 +8,33 @@
 {% endblock %}
 
 {% block body %}
-{% if error %}
-<p class="error">
-<strong>Error:</strong>
-{{ error }}
-{% endif %}
-</p>
-<div id="sidebar">
-</div>
-    <div id="page">
-        <div id="login-border">
-            <div id="login" >
-            <div id="login-prompt">
-                <h2>登录</h2>
-            </div>
-            <div id="log-box">
-                <form action="{{ url_for('login') }}" method=post id="login">
-                    {{ form.hidden_tag() }}
+<div id="sidebar"></div>
+<div id="page">
+    <div id="login-border">
+      <div id="login" >
+        <div id="login-prompt">
+            <h2>登录</h2>
+        </div>
+        <div id="log-box">
+            <form action="{{ url_for('login') }}" method=post id="login">
+                {{ form.hidden_tag() }}
                 <dl>
-                    <dt id="log-username">用户名：</dt>
-                    <dd class="left-align"><input type=text name=username autofocus="autofocus" /></dd>
-                    <dt id="password">密码：</dt>
-                    <dd class="left-align"><input type=password name=password /></dd>
-                    <dd class="left-align"><input type=submit value=Login class="submit-btn"/></dd>
-                </dl>
-                </form>
-            </div>
+                {% if error %}
+                <dt class="error">
+                <strong>Error:</strong>
+                {{ error }}
+                </dt>
+                {% endif %}
+                <dt id="log-username">用户名：</dt>
+                <dd class="left-align"><input type=text name=username autofocus="autofocus" /></dd>
+                <dt id="password">密码：</dt>
+                <dd class="left-align"><input type=password name=password /></dd>
+                <dd class="left-align"><input type=submit value=Login class="submit-btn"/></dd>
+            </dl>
+            </form>
         </div>
     </div>
+  </div>
 </div>
 {% endblock %}
 

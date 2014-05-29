@@ -6,6 +6,10 @@ Admin.addEntry = function() {
         $('form.add_entry').show();
         $('form.edit_entry').hide();
     });
+
+    $('form.add_entry input[action=hide]').click(function () {
+        $('form.add_entry').hide();
+    });
 };
 
 // hide Add Entry widget and show Edit Entry widget
@@ -28,6 +32,10 @@ Admin.editEntry = function() {
 
         $('form.edit_entry').submit(function () {
             $(this).hide();
+        });
+
+        $('form.edit_entry input[action=hide]').click(function () {
+            $('form.edit_entry').hide();
         });
     });
 };

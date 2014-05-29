@@ -1,0 +1,21 @@
+{# check if the given css is existed. We will pass two filename to it,
+  one for full fiename, one for the min-file. If the min-file exists,
+  we will load the min one; otherwise the full one will be loaded.
+#}
+{% macro check_css_exists(fn, min_fn) %}
+{% if exist_static_file(min_fn) %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename=min_fn)}}">
+{% else %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename=fn) }}" >
+{% endif %}
+{% endmacro %}
+
+{# Like the check_css_exists(fn, min_fn). But for js file #}
+{% macro check_js_exists(fn, min_fn) %}
+{% if exist_static_file(min_fn) %}
+<script defer src="{{url_for('static', filename=min_fn)}}"></script>
+{% else %}
+<script defer src="{{url_for('static', filename=fn)}}"></script>
+{% endif %}
+{% endmacro %}
+

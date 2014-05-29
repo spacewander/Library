@@ -1,5 +1,6 @@
 {% extends "admin.html" %}
 {% block subcss %}
+{{ super() }}
 {% if exist_static_file('form-min.css') %}
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='form-min.css')}}">
 {% else %}
@@ -8,38 +9,43 @@
 {% endblock %}
 
 {% block main %}
+<div class='center pure-u-3-5'>
 <div class='center'>
+  <label for="add_entry" class="clickable">添加新的内容</label>
+</div>
   {% if books %}
   <ul class="entries nolist">
   {% for book in books %}
     <li>
-      <div class="book-item">
-        <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''),
-            buydate=(book.buydate if book.buydate else '')) }}"
-          target="_blank">
-        <h2>{{ book.title }}</h2>
-        </a>
-        <div class="book-detail">
-          <span class="separator"> </span>
-          <span>分类：&nbsp;{{ book.category |safe}}</span>
-          <span class="separator"> </span>
-          <span>购置日期：&nbsp;{{ book.buydate |safe}}</span>
-          <span class="separator"> </span>
+      <div>
+        <div class="book-item inline">
+            <a href="{{ url_for('get_book_view', title=book.title, category=(book.category if book.category else ''),
+                buydate=(book.buydate if book.buydate else '')) }}"
+            target="_blank" class="no-link">
+            <h3 class="inline book-title">{{ book.title }}</h3>
+            </a>
+            <div class="book-detail inline">
+            <span class="separator"> </span>
+            <span>分类：&nbsp;{{ book.category |safe}}</span>
+            <span class="separator"> </span>
+            <span>购置日期：&nbsp;{{ book.buydate |safe}}</span>
+            <span class="separator"> </span>
+            </div>
         </div>
-      </div>
-      <div class="action">
-        <span class="edit action-button" data-id={{ book.id }}>edit</span>
-        <div class="none-style">
-          <div data-type="title">{{ book.title }}</div>
-          <div data-type="category">{{ book.category |safe }}</div>
-          <div data-type="buydate">{{ book.buydate |safe }}</div>
-          <div data-type="introduction">{{ book.introduction |safe}}</div>
+        <div class="action inline">
+          <span class="edit action-button clickable" data-id={{ book.id }}>edit</span>
+          <div class="none-style">
+            <div data-type="title">{{ book.title }}</div>
+            <div data-type="category">{{ book.category |safe }}</div>
+            <div data-type="buydate">{{ book.buydate |safe }}</div>
+            <div data-type="introduction">{{ book.introduction |safe}}</div>
+          </div>
+          <a class="no-link" href="{{ url_for('delete_entry', title=book.title,
+              category=(book.category if book.category else ''),
+              buydate=(book.buydate if book.buydate else ''), ssid=book.ssid) }}">
+          <span class="delete no-link action-button clickable">delete</span>
+          </a>
         </div>
-        <a class="no-link" href="{{ url_for('delete_entry', title=book.title, 
-            category=(book.category if book.category else ''),
-            buydate=(book.buydate if book.buydate else ''), ssid=book.ssid) }}">
-        <span class="delete no-link action-button">delete</span>
-        </a>
       </div>
     </li>
   {% endfor %}
@@ -50,9 +56,6 @@
   </div>
 </div>
 {% endif %}
-<div class='center'>
-  <label for="add_entry" >添加新的内容</label>
-</div>
 <div class="post center">
   <form action="{{ url_for('add_entry') }}" method=post class="add_entry">
     <dl>
@@ -64,7 +67,10 @@
       <dd><input type=text size=30 name=buydate placeholder="yyyy-mm-dd"></dd>
       <dt class="introduction">介绍</dt>
       <dd><textarea name=introduction rows=20 cols=50></textarea></dd>
-      <dd><input type=submit value=发布></dd>
+      <dd>
+        <input type=submit value=发布>
+        <input type=button value=取消 action="hide">
+      </dd>
     </dl>
   </form>
   <form action="{{ url_for('edit_entry') }}" method=post class="edit_entry">
@@ -78,7 +84,10 @@
       <dt class="introduction">介绍</dt>
       <dd><textarea name=introduction rows=20 cols=50></textarea></dd>
       <input type="hidden" name="ssid" >
-      <dd><input type=submit value=更新></dd>
+      <dd>
+        <input type=submit value=更新>
+        <input type=button value=取消 action="hide">
+      </dd>
     </dl>
   </form>
 </div>
@@ -89,6 +98,7 @@
 {% endblock %}
 
 {% block subjs %}
+{{ super() }}
 {% if exist_static_file('admin-min.js') %}
 <script defer src="{{url_for('static', filename='admin-min.js')}}"></script>
 {% else %}

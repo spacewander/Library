@@ -1,0 +1,5 @@
+/* fix the negative value caused by pure */
+.clear table, .clear div, .clear {
+  letter-spacing: 0;
+}
+

@@ -1,10 +1,71 @@
 {% extends "layout.html" %}
+{% block subcss %}
+{{ check_css_exists('sidebar.css', 'sidebar-min.css') }}
+{% endblock %}
+
 {% block body %}
     {% if session.admin_logged_in %}
-    <div class="sidebar">
-      {{ user.username }}
+    <!--to implement the response layout, if the screen is too small,
+    the sidebar will hide itself-->
+    <div class="sidebar pure-u-1-5">
+      <div class="sidebar-owner">
+        {{ user.username }}
+      </div>
+      {# the message for user is also for admin.
+      And admin has his/her own message for users' requests #}
+      <div id="sb-adminMessage">
+        <div class="summary">消息</div>
+        <div>
+          <ul class="sb-message">
+          </ul>
+        </div>
+        <div class="mark">全部标注为已读</div>
+        <div class="past-message">查看过往消息</div>
+      </div>
+      {# administrators could borrow books like the normal users #}
+      <div class="sb-records">
+        <div class="sb-borrowed">
+          <span id="borrowed">已借</span>
+          <ul class="sb-booklist">
+            {#          {% for record in borrowed %}
+            <li class="sb-borrowRecord">
+              <a class="no-link" href="">
+              </a>
+            </li>
+            {% endfor %}#}
+          </ul>
+        </div>
+        <div class="sb-order">
+          <span id="order">预订</span>
+          <ul class="sb-booklist">
+            {#          {% for record in ordered %}
+            <li class="sb-orderRecord">
+              <a class="no-link" href="">
+              </a>
+            </li>
+            {% endfor %}#}
+          </ul>
+        </div>
+      </div>
+      <div class="sb-action">
+        <ul class="sb-actonlist">
+          <li class="sb-actionStyle">
+            <a class="no-link" href="">借书</a>
+          </li>
+          <li class="sb-actionStyle">
+            <a class="no-link" href="">续借</a>
+          </li>
+          <li class="sb-actionStyle">
+            <a class="no-link" href="">还书</a>
+          </li>
+          <li class="sb-actionStyle">
+            <a class="no-link" href="">历史</a>
+          </li>
+        </ul>
+      </div>
     </div>
     {% endif %}
+    {# the main block should the container of the html page #}
     {% block main %}
 
     {% endblock %}

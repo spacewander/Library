@@ -1,0 +1,13 @@
+/* the sidebar is on the left of the container */
+.sidebar {
+  margin: 0;
+  width: 20%;
+  background: white;
+  border-right-style: inset;
+  text-align: center;
+}
+
+.sidebar-owner {
+  margin-top: 45px;
+}
+

@@ -1,3 +1,6 @@
+{% from "util/macro.html" import check_css_exists with context %}
+{% from "util/macro.html" import check_js_exists with context %}
+
 <!Doctype html>
 <html>
 <head>
@@ -38,7 +41,7 @@
 {% for message in get_flashed_messages() %}
   <div class="flash">{{ message }}</div>
   {% endfor %}
-  <div class="container">
+  <div class="container pure-g-r">
     {% block body %}
     {% endblock %}
   </div>
@@ -61,3 +64,4 @@
 </div>
 </body>
 </html>
+
