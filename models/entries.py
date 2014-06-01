@@ -29,3 +29,6 @@ class Entries(db.Model):
     def buydate_formula(self):
         return self.buydate.encode('utf-8')
 
+    def reborrow(self):
+        pass
+

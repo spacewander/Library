@@ -271,7 +271,6 @@ def get_book_view(title):
     return render_template('bookview.html', title=title, \
             category=category, buydate=buydate, introduction=introduction)
 
-# this area for submition of register borrowing
 @app.route('/<user_id>/borrow')
 def borrow(user_id):
     """
@@ -287,12 +286,70 @@ def borrow(user_id):
     # whose user_id is reponsitive to the URL
     if user.username == session.get('username') or \
             user.username == session.get('adminname') :
-        book_id = request.args.get('book')
-        if type(book_id) != type(0) :
-            abort(404)
-        book = Entries.query.filter_by(id=book_id).first_or_404()
-        return render_template('borrow.html', book=book, user=user)
+        book_ids = request.args.get('book')
+        # fill books list
+        books = []
+        for book_id in book_ids :
+            if type(book_id) != type(0) or book_id < 1 :
+                abort(404)
+            book = Entries.query.filter_by(id=book_id).first_or_404()
+            books.append(book)
+        return render_template('borrow.html', books=books, user=user)
     else :
         abort(404)
 
+@app.route('/<user_id>/reborrow')
+def reborrow(user_id):
+    """
+    the view of reborrow page. Users can fill the form of reborrowing and submit
+    it to the administrators. Then the administrator will be noticed to handle
+    it.
+
+    username [sting] the username of User
+    """
+    user = User.query.filter_by(user_id=user_id).first_or_404()
+
+    # make sure the user who will fill the form is the user
+    # whose user_id is reponsitive to the URL
+    if user.username == session.get('username') or \
+            user.username == session.get('adminname') :
+        book_ids = request.args.get('book')
+        # fill books list
+        books = []
+        for book_id in book_ids :
+            if type(book_id) != type(0) or book_id < 1 :
+                abort(404)
+            book = Entries.query.filter_by(id=book_id).first_or_404()
+            books.append(book)
+        user.defer_return(books)
+    else :
+        abort(404)
+
+
+@app.route('/<user_id>/return')
+def return_book(user_id):
+    """
+    the view of return page. Users can fill the form of return book and submit
+    it to the administrators. Then the administrator will be noticed to handle
+    it.
+
+    username [sting] the username of User
+    """
+    user = User.query.filter_by(user_id=user_id).first_or_404()
+
+    # make sure the user who will fill the form is the user
+    # whose user_id is reponsitive to the URL
+    if user.username == session.get('username') or \
+            user.username == session.get('adminname') :
+        book_ids = request.args.get('book')
+        # fill books list
+        books = []
+        for book_id in book_ids :
+            if type(book_id) != type(0) or book_id < 1 :
+                abort(404)
+            book = Entries.query.filter_by(id=book_id).first_or_404()
+            books.append(book)
+        return render_template('return.html', books=books, user=user)
+    else :
+        abort(404)
 

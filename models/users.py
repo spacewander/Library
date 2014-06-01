@@ -30,3 +30,12 @@ class User(db.Model):
         """ generalize user id woth id and username """
         return (base64.b64encode(str(id) + username))[:8] # not too long
 
+    def defer_return(self, books=[]):
+        """
+        defer the deadline for returning book
+
+        books [Entries] reborrow those books
+        """
+        for book in book :
+            book.reborrow()
+
