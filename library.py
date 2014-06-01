@@ -6,6 +6,7 @@ from logging import FileHandler, Formatter
 
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask_wtf.csrf import CsrfProtect
 # for debug improvement
 from flask_debugtoolbar import DebugToolbarExtension
 
@@ -14,9 +15,6 @@ from instance import SECRET_KEY, Database, ADMINEMAIL
 # configuration
 # grabs the folder where the script runs
 basedir = os.path.abspath(os.path.dirname(__file__))
-
-# protect my app from cross-site request forgery
-WTF_CSRF_ENABLED = True
 
 # static files will be kept in cache for a day
 SEND_FILE_MAX_AGE_DEFAULT = 86400
@@ -34,6 +32,11 @@ app.config.from_object(__name__)
 app.config.from_envvar('LIBRARY_SETTINGS', silent = True)
 
 app.config['SECRET_KEY'] = SECRET_KEY
+
+# protect my app from cross-site request forgery
+WTF_CSRF_ENABLED = True
+csrf = CsrfProtect()
+csrf.init_app(app)
 
 # get the database reference from SQLAlchemy
 db = SQLAlchemy(app)

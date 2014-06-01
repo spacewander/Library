@@ -12,7 +12,7 @@ from models.entries import Entries
 from models.users import User
 
 # here is from our app
-from library import app, db
+from library import app, db, csrf
 from check import check_items_in_form, check_title_is_existed, \
         check_admin_logged, encrypt_book_record, decrypt_book_record
 from utils import set_session_live, log_error
@@ -56,6 +56,13 @@ def forbidden(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html'), 500
+
+# this area is for csrf protection
+@csrf.error_handler
+def csrf_error(reason):
+    form = Form()
+    error = u'无效的请求！'
+    return render_template('login.html', error=error, form=form), 400
 
 # this area is for route
 @app.route('/')
@@ -194,9 +201,6 @@ def login():
     """
     error = None
     form = Form()
-    #if not form.validate_on_submit() :
-        #error = u'不合法的请求'
-        #return render_template('login.html', error=error, form=form)
 
     # only support POST
     if request.method == 'POST' :
@@ -241,6 +245,11 @@ def logout():
 
 @app.route('/book/<title>')
 def get_book_view(title):
+    """
+    get the view of book according to the title.
+
+    title [string] the title of the relative book
+    """
     # 使用来自数据库的数据来动态生成页面而不是映射到对应的静态页面上去
     # 目前对于这个小应用还可以，在将来可能需要修改
     if not check_title_is_existed(title) :
@@ -261,4 +270,29 @@ def get_book_view(title):
 
     return render_template('bookview.html', title=title, \
             category=category, buydate=buydate, introduction=introduction)
+
+# this area for submition of register borrowing
+@app.route('/<user_id>/borrow')
+def borrow(user_id):
+    """
+    the view of borrow page. Users can fill the form of borrowing and submit
+    it to the administrators. Then the administrator will be noticed to handle
+    it.
+
+    username [sting] the username of User
+    """
+    user = User.query.filter_by(user_id=user_id).first_or_404()
+
+    # make sure the user who will fill the form is the user
+    # whose user_id is reponsitive to the URL
+    if user.username == session.get('username') or \
+            user.username == session.get('adminname') :
+        book_id = request.args.get('book')
+        if type(book_id) != type(0) :
+            abort(404)
+        book = Entries.query.filter_by(id=book_id).first_or_404()
+        return render_template('borrow.html', book=book, user=user)
+    else :
+        abort(404)
+
 

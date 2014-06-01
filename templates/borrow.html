@@ -1,0 +1,79 @@
+{% extends "user.html" %}
+{% block subcss %}
+{{ super() }}
+{% endblock %}
+
+{% block main %}
+<div class='right-center pure-u-3-5'>
+  <div class="post">
+    <div class="user-info">
+      <div class="username">
+        用户名： {{ user.username }}
+      </div>
+    </div>
+    <div class="book-info">
+      <div class="bookid">
+        {{ book.id }}
+      </div>
+      <div class="title">
+        {{ book.title }}
+      </div>
+    </div>
+  </div>
+  <div class="none-style">
+    <ul class="avaliable-time">
+      <li></li>
+    </ul>
+  </div>
+  <div class="select-time">
+    <div class="day1">
+      <label class="time" for="morning"></label>
+      <label class="time" for="afternoon"></label>
+      <label class="time" for="night"></label>
+    </div>
+    <div class="day2">
+      <label class="time" for="morning"></label>
+      <label class="time" for="afternoon"></label>
+      <label class="time" for="night"></label>
+    </div>
+    <div class="day3">
+      <label class="time" for="morning"></label>
+      <label class="time" for="afternoon"></label>
+      <label class="time" for="night"></label>
+    </div>
+    <div class="day4">
+      <label class="time" for="morning"></label>
+      <label class="time" for="afternoon"></label>
+      <label class="time" for="night"></label>
+    </div>
+    <div class="day5">
+      <label class="time" for="morning"></label>
+      <label class="time" for="afternoon"></label>
+      <label class="time" for="night"></label>
+    </div>
+    <div class="day6">
+      <label class="time" for="morning"></label>
+      <label class="time" for="afternoon"></label>
+      <label class="time" for="night"></label>
+    </div>
+    <div class="day7">
+      <label class="time" for="morning"></label>
+      <label class="time" for="afternoon"></label>
+      <label class="time" for="night"></label>
+    </div>
+  </div>
+  <div class="decision">
+    <span>
+      <label for="ok">就这样</label>
+    </span>
+    <span>
+      <label for="cancel">算了吧</label>
+    </span>
+  </div>
+</div>
+{% endblock %}
+
+{% block subjs %}
+{{ super() }}
+{% endblock %}
+
